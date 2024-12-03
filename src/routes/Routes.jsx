@@ -11,6 +11,7 @@ import AddEquipment from "../pages/AddEquipment";
 import PrivateRoute from "./PrivateRoute";
 import AllEquipments from "../pages/AllEquipments";
 import Details from "../pages/Details";
+import NotFound from "../pages/404Page";
 
   export const router = createBrowserRouter([
     {
@@ -51,6 +52,6 @@ import Details from "../pages/Details";
     },
     {
         path: "*",
-        element: <div>404 Page Not Found</div>,
+        element: <NotFound></NotFound>
       },
   ]);

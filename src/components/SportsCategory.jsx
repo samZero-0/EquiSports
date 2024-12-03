@@ -3,7 +3,7 @@ function SportsCategory() {
       {
         title: "Football Equipment",
         products: 156,
-        image: "/football.jpg",
+        image: "/soccer.jpg",
       },
       {
         title: "Basketball Gear",
