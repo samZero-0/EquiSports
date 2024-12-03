@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Products() {
     const [loading, setLoading] = useState(true);
@@ -52,9 +53,11 @@ function Products() {
                                 
                                 <div className="text-sm text-gray-600">Rating: {product.rating} / 5</div>
                                 <div className="text-sm text-gray-600">Available: {product.stockStatus}</div>
+                                <Link to={`/allEquipments/${product._id}`}>
                                 <button className="mt-4 w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors">
                                     View Details
                                 </button>
+                                </Link>
                             </div>
                         </div>
                     ))}

@@ -48,7 +48,8 @@ const Navbar = () => {
                         <li className="pr-4 text-lg"><NavLink to='/' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
                         <li className="text-lg"><NavLink to='/allEquipments' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</NavLink></li>
                         <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li>
-                        <li className="pl-4 text-lg"><NavLink to='/counsil' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>
+                        {user && user.email? <li className="pl-4 text-lg"><NavLink to={`/myEquipments/${user.email}`} className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  <li className="pl-4 text-lg"><NavLink  to={`/login`} className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>}
+                        
                     </ul>
                 </div>
                 {loading ? (

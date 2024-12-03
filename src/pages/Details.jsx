@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 
 const Details = () => {
     const equipment = useLoaderData();
-
+    useEffect(() => {
+      // Scroll to the top when the component mounts
+      window.scrollTo(0, 0);
+    }, []);
   
 
   return (
