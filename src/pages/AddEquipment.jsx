@@ -1,8 +1,10 @@
 import  { useContext, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
+import swal from 'sweetalert';
 
 const AddEquipment = () => {
     const {user} =useContext(AuthContext)
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     image: '',
@@ -25,17 +27,64 @@ const AddEquipment = () => {
     }));
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    const form =e.target;
+    const img = form.image.value;
+    const itemName = form.itemName.value;
+    const categoryName = form.categoryName.value;
+    const description = form.description.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const customization = form.customization.value;
+    const processingTime = form.processingTime.value;
+    const stockStatus = form.stockStatus.value;
+    const userEmail = form.userEmail.value;
+    const userName = form.userName.value;
+
+    const equipment = {img,itemName,categoryName,description,price,rating,customization,processingTime,stockStatus,userEmail,userName}
+
+  
+
+    fetch('https://assignment10backend.vercel.app/equipments', {
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json'
+        },
+        body: JSON.stringify(equipment)
+    })
+    .then(res => res.json())
+    .then(data =>{
+        setIsSubmitting(false); 
+        swal("Success!", "Equipment has been added successfully!", "success");
+        setFormData({
+            image: "",
+            itemName: "",
+            categoryName: "",
+            description: "",
+            price: "",
+            rating: "",
+            customization: "",
+            processingTime: "",
+            stockStatus: "",
+          });
+    })
+    .catch((error) => {
+        setIsSubmitting(false); // Reset loading state on error
+        swal("Error!", "Something went wrong. Please try again.", error);
+      });
+    
+
+    
   };
 
   return (
     <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 w-full mx-auto ">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0  rounded-3xl sm:p-10">
-          <div className="w-11/12 mx-auto">
+          <div className="w-8/10 mx-auto">
             <div className="flex items-center space-x-5">
               <div className="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</div>
               <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
@@ -91,7 +140,11 @@ const AddEquipment = () => {
                 </div>
               </div>
               <div className="pt-4 flex items-center space-x-4">
-                <button className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Create</button>
+                <button className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"> {isSubmitting ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    "Create"
+                  )}</button>
               </div>
             </form>
           </div>

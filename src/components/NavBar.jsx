@@ -30,7 +30,7 @@ const Navbar = () => {
                             className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow-lg">
                             <li><Link to='/' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</Link></li>
                             <li>
-                                <Link to='/about' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</Link>
+                                <Link to='/allEquipments' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</Link>
                               
                             </li>
                             <li><Link to='/addEquipment' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</Link></li>
@@ -46,7 +46,7 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li className="pr-4 text-lg"><NavLink to='/' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
-                        <li className="text-lg"><NavLink to='/about' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</NavLink></li>
+                        <li className="text-lg"><NavLink to='/allEquipments' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</NavLink></li>
                         <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li>
                         <li className="pl-4 text-lg"><NavLink to='/counsil' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>
                     </ul>

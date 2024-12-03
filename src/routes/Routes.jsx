@@ -9,6 +9,8 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import AddEquipment from "../pages/AddEquipment";
 import PrivateRoute from "./PrivateRoute";
+import AllEquipments from "../pages/AllEquipments";
+import Details from "../pages/Details";
 
   export const router = createBrowserRouter([
     {
@@ -32,6 +34,18 @@ import PrivateRoute from "./PrivateRoute";
           path: 'addEquipment',
           element:<PrivateRoute><AddEquipment></AddEquipment></PrivateRoute>
         },
+        {
+          path: 'allEquipments',
+          loader: ()=>fetch('https://assignment10backend.vercel.app/equipments'),
+          element:<AllEquipments></AllEquipments>
+        },
+        {
+          path: 'allEquipments/:id',
+          loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/${params.id}`),
+          element:<PrivateRoute><Details></Details></PrivateRoute>
+        },
+       
+
       ]
     },
     {
