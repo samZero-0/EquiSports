@@ -20,6 +20,7 @@ import Details from "../pages/Details";
 
         {
           path:'',
+          
           element: <Home></Home>
         },
         {

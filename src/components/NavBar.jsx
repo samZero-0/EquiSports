@@ -51,7 +51,6 @@ const Navbar = () => {
                         <li className="pl-4 text-lg"><NavLink to='/counsil' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>
                     </ul>
                 </div>
-                
                 {loading ? (
                     <div className="md:flex justify-center items-center navbar-end hidden">
                         <span className="loading loading-bars loading-lg"></span>
@@ -59,33 +58,28 @@ const Navbar = () => {
                 ) : (
                     <div className="space-x-5 md:flex  items-center navbar-end">
                         {user && user.email && (
-                            <div className="flex gap-2 items-center" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-                                <img src={user.photoURL} alt="" className="w-[50px] h-[50px] rounded-full object-cover border-2 border-white"/>
+                            <div className="flex gap-2 items-center  justify-center" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                                <img src={user.photoURL} alt="" className="w-[50px] h-[50px] rounded-full object-cover border-2 border-white cursor-pointer"/>
+                                <div className={`${hover ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 ease-in-out mt-4 text-center `}>
+                                    <p className="text-lg font-semibold text-black w-1/2">{user.displayName}</p>
+                                </div>
+                                
                                 
                             </div>
                         )}
                         
-                        {/* {user && (
-                            <NavLink 
-                                to='/profile'
-                                className={({ isActive }) => 
-                                    `btn w-[100px] ${
-                                        isActive 
-                                        ? 'bg-purple-600 text-white' 
-                                        : 'bg-white text-purple-600'
-                                    } hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 hidden md:flex`
-                                }
-                            >
-                                Profile
-                            </NavLink>
-                        )} */}
+
                     </div>
                 )}
+                
 
                 {user && user.email ? (
                     <button onClick={logOut} className="ml-4 btn w-[200px] bg-white text-black border-green-600 hover:bg-purple-100 transition-all duration-300">Log Out</button>
                 ) : (
-                    <Link to='/login' className="ml-4 btn w-[150px]  text-black border  hover:bg-purple-100 transition-all duration-300">Log in/Register</Link>
+                    <div>
+                      <Link to='/login' className="ml-4 btn w-[150px]  text-black border  hover:bg-purple-100 transition-all duration-300">Log in</Link>
+                      <Link to='/register' className="ml-4 btn w-[150px]  text-black border  hover:bg-purple-100 transition-all duration-300">Register</Link>
+                    </div>
                 )}
             </div>
         </div>
