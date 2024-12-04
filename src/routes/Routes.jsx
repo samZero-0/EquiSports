@@ -13,6 +13,7 @@ import AllEquipments from "../pages/AllEquipments";
 import Details from "../pages/Details";
 import NotFound from "../pages/404Page";
 import MyEquipmentList from "../pages/MyEquipmentList";
+import Update from "../pages/Update";
 
   export const router = createBrowserRouter([
     {
@@ -51,6 +52,11 @@ import MyEquipmentList from "../pages/MyEquipmentList";
           path: 'myEquipments/byEmail/:email',
           loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/byEmail/${params.email}`),
           element:<PrivateRoute><MyEquipmentList></MyEquipmentList></PrivateRoute>
+        },
+        {
+          path: 'myEquipments/byEmail/:email/update/:id',
+          loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/byEmail/${params.id}`),
+          element:<PrivateRoute><Update></Update></PrivateRoute>
         },
 
       ]

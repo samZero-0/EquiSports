@@ -15,7 +15,7 @@ const Login = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  const { signIn, setUser,  googleSignin,user } = useContext(AuthContext);
+  const { signIn, setUser,  googleSignin } = useContext(AuthContext);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Login = () => {
     googleSignin()
       .then(res => {
         navigate(location?.state ? location.state : "/");
-        toast("Login successful");
+        toast("Login successful",res);
       })
       .catch(err => {
         toast.error("Login failed: " + err.message);

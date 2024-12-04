@@ -1,10 +1,11 @@
 
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const MyEquipmentList = () => {
   const equipment = useLoaderData();
-
+  const [loading, setLoading] = useState(true);
   const renderStars = (rating) => {
     return [...Array(5)].map((_, index) => (
       <FaStar
@@ -15,6 +16,29 @@ const MyEquipmentList = () => {
       />
     ));
   };
+
+  useEffect(() => {
+    
+    const loadEquipment = () => {
+      setTimeout(() => {
+        
+        setLoading(false);
+      }, 1000); 
+    };
+
+    loadEquipment();
+  }, [equipment]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <div className="loading loading-bars loading-lg"></div>
+          <p className="mt-4 text-lg font-semibold">Loading Equipment...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -66,9 +90,11 @@ const MyEquipmentList = () => {
               </p>
 
               <div className='flex gap-2'>
-              <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2">
+             <Link className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"  to={`/myEquipments/byEmail/${item.userEmail}/update/${item._id}`}>
+             <button >
                 Update
               </button>
+             </Link>
               <button className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2">
                 Delet
               </button>

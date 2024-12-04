@@ -1,8 +1,10 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSort } from "react-icons/fa";
 
 const AllEquipments = () => {
+
+
   const equipment = useLoaderData(); 
   const [sortedEquipment, setSortedEquipment] = useState(equipment); 
   const [sortOrder, setSortOrder] = useState("asc"); 
@@ -17,15 +19,39 @@ const AllEquipments = () => {
     setSortOrder(newOrder); 
   };
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    
+    const loadEquipment = () => {
+      setTimeout(() => {
+        setSortedEquipment(equipment);
+        setLoading(false);
+      }, 1000); 
+    };
+
+    loadEquipment();
+  }, [equipment]);
+
   const handleViewDetails = (id) => {
     console.log(`Viewing details for item with id: ${id}`);
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <div className="loading loading-bars loading-lg"></div>
+          <p className="mt-4 text-lg font-semibold">Loading Equipment...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6 text-center">All Sports Equipment</h1>
 
-      {/* Sort Button */}
       <div className="flex justify-end mb-4">
         <button
           onClick={handleSort}
