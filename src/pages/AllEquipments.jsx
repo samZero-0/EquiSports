@@ -33,9 +33,7 @@ const AllEquipments = () => {
     loadEquipment();
   }, [equipment]);
 
-  const handleViewDetails = (id) => {
-    alert(`Viewing details for item with id: ${id}`);
-  };
+ 
 
   if (loading) {
     return (
@@ -83,7 +81,7 @@ const AllEquipments = () => {
                 <td className="py-4 px-4">
                   <Link to={`/allEquipments/${item._id}`}>
                     <button
-                      onClick={() => handleViewDetails(item.id)}
+                     
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                       View Details

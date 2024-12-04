@@ -2,6 +2,7 @@
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 
 const MyEquipmentList = () => {
   const equipment = useLoaderData();
@@ -16,6 +17,33 @@ const MyEquipmentList = () => {
       />
     ));
   };
+
+  const handleDelet = (id) =>{
+
+    swal({
+      title: "Are you sure?",
+      text: "Are you sure that you want to delete this equipment?",
+      icon: "warning",
+      dangerMode: true,
+    })
+    .then(willDelete => {
+      if (willDelete) {
+        
+    fetch(`http://localhost:5000/equipments/${id}`,{
+      method: "DELETE"
+      
+    })
+    .then(res => res.json())
+    .then(data =>{
+      
+    })
+        swal("Deleted!", "Your equipment has been deleted!", "success");
+      }
+    });
+
+
+  }
+
 
   useEffect(() => {
     
@@ -95,7 +123,7 @@ const MyEquipmentList = () => {
                 Update
               </button>
              </Link>
-              <button className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2">
+              <button onClick={()=>handleDelet(item._id)} className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2">
                 Delet
               </button>
 
