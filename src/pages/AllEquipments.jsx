@@ -34,7 +34,7 @@ const AllEquipments = () => {
   }, [equipment]);
 
   const handleViewDetails = (id) => {
-    console.log(`Viewing details for item with id: ${id}`);
+    alert(`Viewing details for item with id: ${id}`);
   };
 
   if (loading) {

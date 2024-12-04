@@ -23,10 +23,10 @@ const Register = () => {
     googleSignin()
       .then(res => {
         navigate('/');
-        console.log(res)
+       
       })
       .catch(err => {
-        console.log(err);
+        
         toast.error("Google login failed");
       })
   }

@@ -12,7 +12,7 @@ const Navbar = () => {
             await logOut(); 
             navigate("/"); 
         } catch (error) {
-            console.error("Error logging out:", error);
+            alert("Error logging out:", error);
         }
     };
     return (
