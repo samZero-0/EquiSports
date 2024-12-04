@@ -47,7 +47,7 @@ const Banner = () => {
           <div className="container mx-auto px-4 h-full flex items-center">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
-                <img src="/logo.png" alt="Max Fit Logo" className="w-24 h-auto" />
+                <img src="/logo2.png" alt="Max Fit Logo" className="w-24 h-auto" />
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-800">{slide.title}</h2>
                 <p className="text-lg text-gray-600">{slide.description}</p>
                 <button className="bg-white text-gray-800 px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-gray-100 transition duration-300 border-purple-600 border">

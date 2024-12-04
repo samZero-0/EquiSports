@@ -1,10 +1,12 @@
-import  { useContext, useState } from 'react';
-import { AuthContext } from '../providers/AuthProvider';
+
 import swal from 'sweetalert';
+import { useLoaderData } from 'react-router-dom';
+import { useState } from 'react';
 
 const Update = () => {
-    const {user} =useContext(AuthContext)
+    
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const equipment = useLoaderData();
 
   const [formData, setFormData] = useState({
     image: '',
@@ -44,35 +46,29 @@ const Update = () => {
     const userEmail = form.userEmail.value;
     const userName = form.userName.value;
 
-    const equipment = {img,itemName,categoryName,description,price,rating,customization,processingTime,stockStatus,userEmail,userName}
+    const updatedEquipment = {img,itemName,categoryName,description,price,rating,customization,processingTime,stockStatus,userEmail,userName}
 
   
 
-    fetch('https://assignment10backend.vercel.app/equipments', {
-        method: 'POST',
+    fetch(`https://assignment10backend.vercel.app/equipments/${equipment._id}`, {
+        method: 'PUT',
         headers: {
             'content-type' : 'application/json'
         },
-        body: JSON.stringify(equipment)
+        body: JSON.stringify(updatedEquipment)
     })
     .then(res => res.json())
     .then(data =>{
         setIsSubmitting(false); 
-        swal("Success!", "Equipment has been added successfully!", "success");
-        setFormData({
-            image: "",
-            itemName: "",
-            categoryName: "",
-            description: "",
-            price: "",
-            rating: "",
-            customization: "",
-            processingTime: "",
-            stockStatus: "",
-          });
+        if(data.modifiedCount>0){
+            swal("Success!", "Equipment has been updated successfully!", "success");
+            
+        }
+        
+        
     })
     .catch((error) => {
-        setIsSubmitting(false); // Reset loading state on error
+        setIsSubmitting(false); 
         swal("Error!", "Something went wrong. Please try again.", error);
       });
     
@@ -82,6 +78,7 @@ const Update = () => {
 
   return (
     <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
+       
       <div className="relative py-3 w-full mx-auto ">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0  rounded-3xl sm:p-10">
           <div className="w-8/12 mx-auto ">
@@ -96,54 +93,54 @@ const Update = () => {
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="flex flex-col">
                   <label className="leading-loose">Image URL</label>
-                  <input type="text" name="image" value={formData.image} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="http://example.com/image.jpg" />
+                  <input type="text" name="image" defaultValue={equipment.img} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="http://example.com/image.jpg" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Item Name</label>
-                  <input type="text" name="itemName" value={formData.itemName} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Cricket Bat" />
+                  <input type="text" name="itemName" defaultValue={equipment.itemName} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Cricket Bat" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Category Name</label>
-                  <input type="text" name="categoryName" value={formData.categoryName} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Sports Equipment" />
+                  <input type="text" name="categoryName" defaultValue={equipment.category}  onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Sports Equipment" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Description</label>
-                  <textarea name="description" value={formData.description} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="High-quality cricket bat..."></textarea>
+                  <textarea name="description" defaultValue={equipment.description}onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="High-quality cricket bat..."></textarea>
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Price</label>
-                  <input type="number" name="price" value={formData.price} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="99.99" />
+                  <input type="number" name="price" defaultValue={equipment.price} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="99.99" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Rating</label>
-                  <input type="number" name="rating" value={formData.rating} onChange={handleChange} min="1" max="5" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="4.5" />
+                  <input type="number" name="rating" defaultValue={equipment.rating} onChange={handleChange} min="1" max="5" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="4.5" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Customization</label>
-                  <input type="text" name="customization" value={formData.customization} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Extra grip, hit paper" />
+                  <input type="text" name="customization" defaultValue={equipment.customization}onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Extra grip, hit paper" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Processing Time</label>
-                  <input type="text" name="processingTime" value={formData.processingTime} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="3-5 business days" />
+                  <input type="text" name="processingTime" defaultValue={equipment.processingTime} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="3-5 business days" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Stock Status</label>
-                  <input type="number" name="stockStatus" value={formData.stockStatus} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="100" />
+                  <input type="number" name="stockStatus" defaultValue={equipment.stockStatus} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="100" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Email </label>
-                  <input type="email" name="userEmail" value={user.email} readOnly className="px-4 py-2 border bg-gray-100 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" />
+                  <input type="email" name="userEmail" defaultValue={equipment.userEmail} readOnly className="px-4 py-2 border bg-gray-100 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose"> Name </label>
-                  <input type="text" name="userName" value={user.displayName} readOnly className="px-4 py-2 border bg-gray-100 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" />
+                  <input type="text" name="userName" defaultValue={equipment.userName} readOnly className="px-4 py-2 border bg-gray-100 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" />
                 </div>
               </div>
               <div className="pt-4 flex items-center space-x-4">
                 <button className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"> {isSubmitting ? (
                     <span className="loading loading-spinner"></span>
                   ) : (
-                    "Create"
+                    "Update"
                   )}</button>
               </div>
             </form>

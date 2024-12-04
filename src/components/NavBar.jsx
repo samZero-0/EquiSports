@@ -48,7 +48,7 @@ const Navbar = () => {
                     </div>
                     <Link to='/' className="  text-xl text-black">
                     <div className="flex justify-start ">
-                    <img src="/logo.png" alt="" className="lg:w-1/2 "/>
+                    <img src="/logo2.png" alt="" className="lg:w-1/2 "/>
                     </div>
                     </Link>
                 </div>

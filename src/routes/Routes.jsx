@@ -55,7 +55,7 @@ import Update from "../pages/Update";
         },
         {
           path: 'myEquipments/byEmail/:email/update/:id',
-          loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/byEmail/${params.id}`),
+          loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/${params.id}`),
           element:<PrivateRoute><Update></Update></PrivateRoute>
         },
 

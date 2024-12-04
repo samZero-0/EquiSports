@@ -49,7 +49,7 @@ const Footer = () => {
     </div>
   </nav>
   <aside>
-    <p>Copyright © {new Date().getFullYear()} - All right reserved by SportsSpree Industries Ltd</p>
+    <p>Copyright © {new Date().getFullYear()} - All right reserved by EquiSports Industries Ltd</p>
   </aside>
 </footer>
             
