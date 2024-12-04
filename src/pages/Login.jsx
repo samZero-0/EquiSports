@@ -15,7 +15,7 @@ const Login = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  const { signIn, setUser, setEmailRealTime, googleSignin } = useContext(AuthContext);
+  const { signIn, setUser,  googleSignin,user } = useContext(AuthContext);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -32,10 +32,7 @@ const Login = () => {
       });
   };
 
-  const handleEmailRealTime = (e) => {
-    const newValue = e.target.value;
-    setEmailRealTime(newValue);
-  };
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -46,6 +43,7 @@ const Login = () => {
     signIn(email, password)
       .then(res => {
         setUser(res.user);
+        
         navigate(location?.state ? location.state : "/");
         toast("Login successful");
       })
@@ -72,7 +70,7 @@ const Login = () => {
               <span className="label-text">Email</span>
             </label>
             <input
-              onChange={handleEmailRealTime}
+              
               type="email"
               placeholder="email"
               className="input input-bordered"

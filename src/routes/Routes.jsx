@@ -48,8 +48,8 @@ import MyEquipmentList from "../pages/MyEquipmentList";
           element:<PrivateRoute><Details></Details></PrivateRoute>
         },
         {
-          path: 'myEquipments/:email',
-          loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/${params.email}`),
+          path: 'myEquipments/byEmail/:email',
+          loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/byEmail/${params.email}`),
           element:<PrivateRoute><MyEquipmentList></MyEquipmentList></PrivateRoute>
         },
 

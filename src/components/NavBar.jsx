@@ -1,11 +1,20 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+
     const { user, logOut, loading } = useContext(AuthContext);
     const [hover, setHover] = useState(false);
-
+    const navigate = useNavigate();
+    const handleLogOut = async () => {
+        try {
+            await logOut(); 
+            navigate("/"); 
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    };
     return (
         <div className=" text-black  z-50">
             <div className="navbar container mx-auto">
@@ -48,7 +57,7 @@ const Navbar = () => {
                         <li className="pr-4 text-lg"><NavLink to='/' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
                         <li className="text-lg"><NavLink to='/allEquipments' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</NavLink></li>
                         <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li>
-                        {user && user.email? <li className="pl-4 text-lg"><NavLink to={`/myEquipments/${user.email}`} className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  <li className="pl-4 text-lg"><NavLink  to={`/login`} className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>}
+                        {user && user.email? <li className="pl-4 text-lg"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  <li className="pl-4 text-lg"><Link  to={`/login`} className="hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </Link></li>}
                         
                     </ul>
                 </div>
@@ -75,7 +84,7 @@ const Navbar = () => {
                 
 
                 {user && user.email ? (
-                    <button onClick={logOut} className="ml-4 btn w-[200px] bg-white text-black border-green-600 hover:bg-purple-100 transition-all duration-300">Log Out</button>
+                    <button onClick={handleLogOut} className="ml-4 btn w-[200px] bg-white text-black border-green-600 hover:bg-purple-100 transition-all duration-300">Log Out</button>
                 ) : (
                     <div>
                       <Link to='/login' className="ml-4 btn w-[150px]  text-black border  hover:bg-purple-100 transition-all duration-300">Log in</Link>
