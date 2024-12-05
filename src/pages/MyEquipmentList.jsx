@@ -7,6 +7,9 @@ import swal from 'sweetalert';
 const MyEquipmentList = () => {
   const equipment = useLoaderData();
   const [loading, setLoading] = useState(true);
+
+  const [loadedEuipmenets,setLoadedEquipments] = useState(equipment);
+
   const renderStars = (rating) => {
     return [...Array(5)].map((_, index) => (
       <FaStar
@@ -29,15 +32,17 @@ const MyEquipmentList = () => {
     .then(willDelete => {
       if (willDelete) {
         
-    fetch(`http://localhost:5000/equipments/${id}`,{
+    fetch(`https://assignment10backend.vercel.app/equipments/${id}`,{
       method: "DELETE"
-      
     })
     .then(res => res.json())
     .then(data =>{
-      
     })
         swal("Deleted!", "Your equipment has been deleted!", "success");
+
+        const remaining = loadedEuipmenets.filter(item => item._id !== id)
+
+        setLoadedEquipments(remaining)
       }
     });
 
@@ -75,7 +80,7 @@ const MyEquipmentList = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {equipment.map((item, index) => (
+        {loadedEuipmenets.map((item, index) => (
           <div
             key={index}
             className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
@@ -109,7 +114,7 @@ const MyEquipmentList = () => {
 
               <div className="mb-3">
                 <span className="inline-block px-2 py-1 text-sm bg-gray-100 text-gray-600 rounded-full">
-                  {item.category}
+                  {item.categoryName}
                 </span>
               </div>
 

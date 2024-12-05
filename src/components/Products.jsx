@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function Products() {
     const [loading, setLoading] = useState(true);
@@ -51,8 +52,14 @@ function Products() {
                                 <h3 className="text-lg font-medium text-gray-900">{product.itemName}</h3>
                                 <p className="text-sm text-gray-500">{product.description}</p>
                                 
-                                <div className="text-sm text-gray-600">Rating: {product.rating} / 5</div>
-                                <div className="text-sm text-gray-600">Available: {product.stockStatus}</div>
+                                   
+                                    <ReactStars
+                                    count={5}
+                                    size={24}
+                                    value={product.rating}
+                                    edit={false}
+                                    activeColor="#ffd700" />
+                                <div className="text-sm text-gray-600">In stock: <span className="font-medium">{product.stockStatus}</span></div>
                                 <Link to={`/allEquipments/${product._id}`}>
                                 <button className="mt-4 w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors">
                                     View Details
