@@ -11,7 +11,6 @@ const MainLayout = () => {
            <NavBar></NavBar>
 
         <div className="w-11/12 mx-auto ">
-            
 
             <div className="min-h-[calc(100vh-289px)]">
             <Outlet></Outlet>

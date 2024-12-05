@@ -24,8 +24,8 @@ function Products() {
         <div className="w-11/12 mx-auto px-4 py-8">
             <div className="flex justify-between items-center my-10">
                 <div>
-                    <h2 className="text-4xl font-bold text-gray-900">Products</h2>
-                    <p className="text-gray-600 mt-3">Browse through our collection of must-haves</p>
+                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Products</h2>
+                    <p className="text-gray-600 mt-3 dark:text-white">Browse through our collection of must-haves</p>
                 </div>
             </div>
 
@@ -49,8 +49,8 @@ function Products() {
                             </div>
 
                             <div className="mt-4">
-                                <h3 className="text-lg font-medium text-gray-900">{product.itemName}</h3>
-                                <p className="text-sm text-gray-500">{product.description}</p>
+                                <h3 className="text-lg font-medium text-gray-900 dark:text-white">{product.itemName}</h3>
+                                <p className="text-sm text-gray-500 dark:text-white">{product.description}</p>
                                 
                                    
                                     <ReactStars
@@ -59,7 +59,7 @@ function Products() {
                                     value={product.rating}
                                     edit={false}
                                     activeColor="#ffd700" />
-                                <div className="text-sm text-gray-600">In stock: <span className="font-medium">{product.stockStatus}</span></div>
+                                <div className="text-sm text-gray-600 dark:text-white">In stock: <span className="font-medium">{product.stockStatus}</span></div>
                                 <Link to={`/allEquipments/${product._id}`}>
                                 <button className="mt-4 w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors">
                                     View Details

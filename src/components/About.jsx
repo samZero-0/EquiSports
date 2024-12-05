@@ -6,23 +6,23 @@ export default function About() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className=" bg-white mb-14">
+    <div className="  mb-14">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center ">
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
                 Professional sports products
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-white">
                 We specialize in a variety of professional sports products.
               </p>
             </div>
 
             <div className="grid grid-cols-3 gap-2 ">
               {/* Feature 1 */}
-              <div className="bg-sky-500 rounded-xl p-6 text-white">
+              <div className="bg-sky-500 dark:bg-blue-900 rounded-xl p-6 text-white">
               <RiTeamFill className="w-8 h-8 mb-4"></RiTeamFill>
                 <h3 className="font-semibold mb-2">A friendly team works for you</h3>
                 <p className="text-sm text-sky-100">
@@ -31,7 +31,7 @@ export default function About() {
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-sky-500 rounded-xl p-6 text-white">
+              <div className="bg-sky-500 dark:bg-blue-900 rounded-xl p-6 text-white">
                     <IoIosFootball className="w-8 h-8 mb-4"></IoIosFootball>
                 <h3 className="font-semibold mb-2">Professional grade equipment</h3>
                 <p className="text-sm text-sky-100">
@@ -40,7 +40,7 @@ export default function About() {
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-sky-500 rounded-xl p-6 text-white">
+              <div className="bg-sky-500 dark:bg-blue-900 rounded-xl p-6 text-white">
                 <Clock className="w-8 h-8 mb-4 " />
                 <h3 className="font-semibold mb-2">Time-tested product manufacturers</h3>
                 <p className="text-sm text-sky-100">

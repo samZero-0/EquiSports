@@ -14,18 +14,25 @@ import Details from "../pages/Details";
 import NotFound from "../pages/404Page";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import Update from "../pages/Update";
+import HomeLayout from "../Layouts/HomeLayout";
 
   export const router = createBrowserRouter([
     {
       path: "/",
+      element: <HomeLayout></HomeLayout>,
+      children: [
+        {
+          path: '',
+          element: <Home></Home>
+        }
+      ]
+
+    },
+    {
+      path: "/",
       element: <MainLayout></MainLayout>,
       children:[
-
-        {
-          path:'',
-          
-          element: <Home></Home>
-        },
+        
         {
           path: 'login',
           element: <Login></Login>
@@ -65,4 +72,5 @@ import Update from "../pages/Update";
         path: "*",
         element: <NotFound></NotFound>
       },
+      
   ]);

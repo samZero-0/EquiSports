@@ -4,6 +4,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Fade, Slide } from "react-awesome-reveal";
 
 const Banner = () => {
   const slides = [
@@ -48,8 +49,9 @@ const Banner = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <img src="/logo2.png" alt="Max Fit Logo" className="w-24 h-auto" />
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">{slide.title}</h2>
-                <p className="text-lg text-gray-600">{slide.description}</p>
+                <Slide ><h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">{slide.title}</h2></Slide>
+             
+                <Fade delay={1e3} cascade damping={1e-1}><p className="text-lg text-gray-600 dark:text-white">{slide.description}</p></Fade>
                 <button className="bg-white text-gray-800 px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-gray-100 transition duration-300 border-purple-600 border">
                   <span>{slide.cta}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -74,7 +76,11 @@ const Banner = () => {
           </div> */}
         </SwiperSlide>
       ))}
+
+      
     </Swiper>
+
+    
   );
 };
 

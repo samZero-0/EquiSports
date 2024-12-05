@@ -34,8 +34,8 @@ function SportsCategory() {
   
     return (
       <div className="w-full mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-center mb-4">Shop By Category</h1>
-        <p className="text-center text-gray-600 mb-12">
+        <h1 className="text-4xl font-bold text-center mb-4 dark:text-white">Shop By Category</h1>
+        <p className="text-center text-gray-600 mb-12 dark:text-white">
           Discover our wide range of premium sports equipment for every athlete and fitness enthusiast
         </p>
         
