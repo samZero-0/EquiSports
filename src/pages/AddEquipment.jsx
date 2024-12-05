@@ -1,6 +1,7 @@
 import  { useContext, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import swal from 'sweetalert';
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const AddEquipment = () => {
     const {user} =useContext(AuthContext)
@@ -82,6 +83,7 @@ const AddEquipment = () => {
 
   return (
     <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
+      
       <div className="relative py-3 w-full mx-auto ">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0  rounded-3xl sm:p-10">
           <div className="w-8/12 mx-auto ">
@@ -96,7 +98,12 @@ const AddEquipment = () => {
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="flex flex-col">
                   <label className="leading-loose">Image URL</label>
-                  <input type="text" name="image" value={formData.image} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="http://example.com/image.jpg" />
+                  <input data-tooltip-id="my-tooltip-1" type="text" name="image" value={formData.image} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="http://example.com/image.jpg" />
+                  <ReactTooltip
+        id="my-tooltip-1"
+        place="bottom"
+        content="Only Insert valid image url"
+      />
                 </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Item Name</label>
