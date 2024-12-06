@@ -45,7 +45,7 @@ const Banner = () => {
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className="">
-          <div className="container mx-auto px-4 h-full flex items-center ">
+          <div className="container mx-auto px-4 h-full flex items-center md:mt-0 mt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <img src="/logo2.png" alt="Max Fit Logo" className="w-24 h-auto" />
@@ -65,15 +65,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          {/* <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20">
-            <p className="text-gray-800 mb-2 text-lg">You can buy the whole kit at once</p>
-            <button className="bg-purple-600 text-white px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-orange-600 transition duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-              </svg>
-              <span>{slide.kitCta}</span>
-            </button>
-          </div> */}
+         
         </SwiperSlide>
       ))}
 

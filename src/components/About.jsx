@@ -20,7 +20,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 ">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-2 ">
               {/* Feature 1 */}
               <div className="bg-sky-500 dark:bg-blue-900 rounded-xl p-6 text-white">
               <RiTeamFill className="w-8 h-8 mb-4"></RiTeamFill>

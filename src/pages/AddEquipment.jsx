@@ -90,7 +90,7 @@ const AddEquipment = () => {
       
       <div className="relative py-3 w-full mx-auto ">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0  rounded-3xl sm:p-10">
-          <div className="w-8/12 mx-auto ">
+          <div className="md:w-8/12 mx-auto ">
             <div className="flex items-center space-x-5">
               <div className="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</div>
               <div className="block pl-2 font-semibold text-xl self-start text-gray-700">

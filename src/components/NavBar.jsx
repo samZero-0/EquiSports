@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden dark:text-white">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -36,19 +36,19 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow-lg">
-                            <li><Link to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300 ">Home</Link></li>
+                            className="menu menu-sm dropdown-content rounded-box z-[100] mt-3 w-52 p-2 shadow-lg bg-white dark:bg-black dark:border dark:border-white">
+                            <li ><Link to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300 ">Home</Link></li>
                             <li>
                                 <Link to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</Link>
                               
                             </li>
                             <li><Link to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</Link></li>
-                            <li><Link to='/profile' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments</Link></li>
+                            {user && user.email? <li className="text-lg"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  <li className="pl-4 text-lg"><Link  to={`/login`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </Link></li>}
                         </ul>
                     </div>
                     <Link to='/' className="  text-xl text-black">
-                    <div className="flex justify-start ">
-                    <img src="/logo2.png" alt="" className="lg:w-1/2 "/>
+                    <div className="md:flex justify-start hidden">
+                    <img src="/logo2.png" alt="" className="lg:w-1/2  "/>
                     </div>
                     </Link>
                 </div>
