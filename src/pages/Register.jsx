@@ -65,6 +65,7 @@ const Register = () => {
 
   return (
     <div className="w-full flex justify-center items-center flex-col gap-4 py-12">
+      
       <ToastContainer />
       <Helmet>
         <title>Register</title>

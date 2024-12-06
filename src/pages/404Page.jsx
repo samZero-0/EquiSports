@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet";
 
 
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center px-4">
+           <Helmet>
+        <title>Page Not Found</title>
+      </Helmet>
       <div className="max-w-3xl mx-auto text-center">
        
         <div className="relative">

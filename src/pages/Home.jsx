@@ -11,6 +11,7 @@ import DarkModeToggle from "react-dark-mode-toggle";
 
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
     const [isDarkMode, setIsDarkMode] = useState(() => false);
@@ -24,6 +25,9 @@ const Home = () => {
     return (
         
         <div className={isDarkMode && `dark`}>
+                 <Helmet>
+        <title>EquiSports</title>
+      </Helmet>
 
             
             <div className="dark:bg-black "><NavBar></NavBar></div>

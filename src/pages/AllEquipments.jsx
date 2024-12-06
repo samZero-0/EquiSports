@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaSort } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const AllEquipments = () => {
 
@@ -48,6 +49,9 @@ const AllEquipments = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+           <Helmet>
+        <title>All Equipments</title>
+      </Helmet>
       <h1 className="text-3xl font-bold mb-6 text-center">All Sports Equipment</h1>
 
       <div className="flex justify-end mb-4">

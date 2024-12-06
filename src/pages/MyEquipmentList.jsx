@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
+import { Helmet } from 'react-helmet';
 
 const MyEquipmentList = () => {
   const equipment = useLoaderData();
@@ -75,6 +76,9 @@ const MyEquipmentList = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
+           <Helmet>
+        <title>My Equipments</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
         My Equipment
       </h1>

@@ -2,6 +2,7 @@ import  { useContext, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import swal from 'sweetalert';
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import { Helmet } from 'react-helmet';
 
 const AddEquipment = () => {
     const {user} =useContext(AuthContext)
@@ -83,6 +84,9 @@ const AddEquipment = () => {
 
   return (
     <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
+           <Helmet>
+        <title>Add Equipments</title>
+      </Helmet>
       
       <div className="relative py-3 w-full mx-auto ">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0  rounded-3xl sm:p-10">
