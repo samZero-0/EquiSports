@@ -15,7 +15,7 @@ function Products() {
                 setLoading(false);
             })
             .catch((error) => {
-                alert("Error fetching data:", error);
+                // alert("Error fetching data:", error);
                 setLoading(false);
             });
     }, []);
