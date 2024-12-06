@@ -6,6 +6,10 @@ import swal from 'sweetalert';
 import { Helmet } from 'react-helmet';
 
 const MyEquipmentList = () => {
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   const equipment = useLoaderData();
   const [loading, setLoading] = useState(true);
 

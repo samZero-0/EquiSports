@@ -1,10 +1,15 @@
 
 import swal from 'sweetalert';
 import { useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 const Update = () => {
+
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
     
     const [isSubmitting, setIsSubmitting] = useState(false);
     const equipment = useLoaderData();

@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -6,6 +7,7 @@ import { Outlet } from "react-router-dom";
 const HomeLayout = () => {
     return (
         <div>
+            <ToastContainer />
           <div className="w-full">
 
         <div className="w-full mx-auto ">

@@ -1,10 +1,14 @@
-import  { useContext, useState } from 'react';
+import  { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import swal from 'sweetalert';
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { Helmet } from 'react-helmet';
 
 const AddEquipment = () => {
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
     const {user} =useContext(AuthContext)
     const [isSubmitting, setIsSubmitting] = useState(false);
 

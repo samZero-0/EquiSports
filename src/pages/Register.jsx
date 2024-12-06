@@ -22,7 +22,10 @@ const Register = () => {
   const handleGoogleLogin = () => {
     googleSignin()
       .then(res => {
-        navigate('/');
+        toast.success("Register Successful");
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 800);
        
       })
       .catch(err => {
@@ -47,8 +50,11 @@ const Register = () => {
           updateProfile(currentUser, { displayName: name, photoURL: photo })
           
             .then(() => {
-              navigate('/');
-              toast.success("Register Successful")
+              toast.success("Register Successful");
+              setTimeout(() => {
+                navigate("/");
+              }, 800);
+              
               
             })
             .catch(err => {

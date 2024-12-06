@@ -24,8 +24,11 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignin()
       .then(res => {
-        navigate(location?.state ? location.state : "/");
-        toast("Login successful",res);
+        toast.success("Login successful",res);
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 1000);
+        
       })
       .catch(err => {
         toast.error("Login failed: " + err.message);
@@ -43,9 +46,11 @@ const Login = () => {
     signIn(email, password)
       .then(res => {
         setUser(res.user);
-        
-        navigate(location?.state ? location.state : "/");
-        toast("Login successful");
+        toast.success("Login successful");
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 800);
+         
       })
       .catch(err => {
         toast.error(`Login Failed: ${err.message}`);

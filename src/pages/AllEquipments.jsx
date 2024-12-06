@@ -4,7 +4,10 @@ import { FaSort } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 
 const AllEquipments = () => {
-
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   const equipment = useLoaderData(); 
   const [sortedEquipment, setSortedEquipment] = useState(equipment); 

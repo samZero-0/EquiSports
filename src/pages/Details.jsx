@@ -4,6 +4,10 @@ import { Link, useLoaderData } from "react-router-dom";
 
 
 const Details = () => {
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
     const equipment = useLoaderData();
     useEffect(() => {
       // Scroll to the top when the component mounts
