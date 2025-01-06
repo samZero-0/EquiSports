@@ -6,6 +6,7 @@ const Navbar = () => {
 
     const { user, logOut, loading } = useContext(AuthContext);
     const [hover, setHover] = useState(false);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -15,8 +16,26 @@ const Navbar = () => {
            const err =error;
         }
     };
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
+    };
+
+    const handleScroll = () => {
+        const section = document.getElementById("contact");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+
+      const handleScroll2 = () => {
+        const section = document.getElementById("about");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+
     return (
-        <div className=" text-black  z-50">
+        <div className=" text-black  z-50  sticky top-0 bg-white dark:bg-black ">
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -39,25 +58,27 @@ const Navbar = () => {
                             className="menu menu-sm dropdown-content rounded-box z-[100] mt-3 w-52 p-2 shadow-lg bg-white dark:bg-black dark:border dark:border-white">
                             <li ><Link to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300 ">Home</Link></li>
                             <li>
-                                <Link to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</Link>
+                                <Link to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Equipments</Link>
                               
                             </li>
-                            <li><Link to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</Link></li>
-                            {user && user.email? <li className="text-lg"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  <li className="pl-4 text-lg"><Link  to={`/login`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </Link></li>}
+                            <li><a>About Us</a></li>
+                            {user && user.email? <li className="text-lg"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  ""}
                         </ul>
                     </div>
                     <Link to='/' className="  text-xl text-black">
-                    <div className="md:flex justify-start hidden">
+                    <div className="md:flex justify-start hidden ">
                     <img src="/logo2.png" alt="" className="lg:w-1/2  "/>
                     </div>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li className="pr-4 text-lg"><NavLink to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
-                        <li className="text-lg"><NavLink to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">All Equipments</NavLink></li>
-                        <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li>
-                        {user && user.email? <li className="pl-4 text-lg"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  <li className="pl-4 text-lg"><Link  to={`/login`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </Link></li>}
+                        <li className="pr-4 text-base"><NavLink to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
+                        <li className="text-base"><NavLink to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Equipments</NavLink></li>
+                        <li onClick={handleScroll2} className="text-base"><a>About Us</a></li>
+                        <li onClick={handleScroll} className="text-base"><a>Contact</a></li>
+                        {/* <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li> */}
+                        {user && user.email? <li className="pl-4 text-base"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  ""}
                         
                     </ul>
                 </div>
@@ -66,19 +87,33 @@ const Navbar = () => {
                         <span className="loading loading-bars loading-lg"></span>
                     </div>
                 ) : (
-                    <div className="space-x-5 md:flex  items-center navbar-end">
+                    <div className="space-x-5 md:flex items-center navbar-end">
                         {user && user.email && (
-                            <div className="flex gap-2 items-center  justify-center" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-                                <img src={user.photoURL} alt="" className="w-[50px] h-[50px] rounded-full object-cover border-2 border-white cursor-pointer"/>
-                                <div className={`${hover ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 ease-in-out mt-4 text-center `}>
-                                    <p className="text-lg font-semibold text-black w-1/2">{user.displayName}</p>
-                                </div>
-                                
-                                
+                            <div className="relative">
+                                <img
+                                    src={user.photoURL}
+                                    alt="User Avatar"
+                                    className="w-[50px] h-[50px] rounded-full object-cover border-2 border-white cursor-pointer"
+                                    onClick={toggleDropdown}
+                                />
+                                {dropdownVisible && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50 dark:bg-gray-800">
+                                        <Link
+                                            to="/addEquipment"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                                        >
+                                            Add Equipments
+                                        </Link>
+                                        <Link
+                                            to="/settings"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                                        >
+                                            Settings
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         )}
-                        
-
                     </div>
                 )}
                 
@@ -87,8 +122,8 @@ const Navbar = () => {
                     <button onClick={handleLogOut} className="ml-4 btn w-[100px] bg-white text-black border hover:bg-purple-100 transition-all duration-300">Log Out</button>
                 ) : (
                     <div>
-                      <Link to='/login' className="ml-4 btn w-[100px]  text-black border  hover:bg-purple-100 transition-all duration-300">Log in</Link>
-                      <Link to='/register' className="ml-4 btn w-[100px]  text-black border  hover:bg-purple-100 transition-all duration-300">Register</Link>
+                      <Link to='/login' className="ml-4 btn w-[150px]  text-black border  hover:bg-purple-100 transition-all duration-300">Login/Sign Up</Link>
+                      
                     </div>
                 )}
             </div>

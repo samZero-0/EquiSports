@@ -21,19 +21,19 @@ function Products() {
     }, []);
 
     return (
-        <div className="w-11/12 mx-auto px-4 py-8">
+        <div className="w-full mx-auto px-4 py-8">
             <div className="flex justify-between items-center my-10">
-                <div>
-                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Products</h2>
+                <div className=" w-full flex flex-col items-center">
+                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Featured Products</h2>
                     <p className="text-gray-600 mt-3 dark:text-white">Browse through our collection of must-haves</p>
                 </div>
             </div>
 
             {loading ? (
-                <div>Loading...</div>
+                <div className="flex justify-center"><span className="loading loading-ring loading-lg text-4xl"></span></div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {equipments.slice(0,6).map((product) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {equipments.map((product) => (
                         <div key={product._id} className="group relative">
                             <div className="relative">
                                 {product.price && (
@@ -50,7 +50,7 @@ function Products() {
 
                             <div className="mt-4">
                                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">{product.itemName}</h3>
-                                <p className="text-sm text-gray-500 dark:text-white">{product.description}</p>
+                                <p className="text-sm text-gray-500 dark:text-white">{product.description.slice(0,40)}</p>
                                 
                                    
                                     <ReactStars

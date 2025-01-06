@@ -14,25 +14,18 @@ import Details from "../pages/Details";
 import NotFound from "../pages/404Page";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import Update from "../pages/Update";
-import HomeLayout from "../Layouts/HomeLayout";
+// import HomeLayout from "../Layouts/HomeLayout";
 
   export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HomeLayout></HomeLayout>,
-      children: [
-        {
-          path: '',
-          element: <Home></Home>
-        }
-      ]
-
-    },
+   
     {
       path: "/",
       element: <MainLayout></MainLayout>,
       children:[
-        
+        {
+          path: '',
+          element: <Home></Home>
+        },
         {
           path: 'login',
           element: <Login></Login>
@@ -53,7 +46,7 @@ import HomeLayout from "../Layouts/HomeLayout";
         {
           path: 'allEquipments/:id',
           loader: ({params})=>fetch(`https://assignment10backend.vercel.app/equipments/${params.id}`),
-          element:<PrivateRoute><Details></Details></PrivateRoute>
+          element:<Details></Details>
         },
         {
           path: 'myEquipments/byEmail/:email',
