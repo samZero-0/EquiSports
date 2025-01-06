@@ -2,14 +2,18 @@ import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 
 
 const MainLayout = () => {
+    const {isDarkMode} = useContext(AuthContext);
+
     return (
-        <div>
+        <div className={isDarkMode ? "dark" : ""}>
             <ToastContainer></ToastContainer>
-       <div className="w-full">
+       <div className="w-full dark:bg-black bg-white">
            <NavBar></NavBar>
 
         <div className="w-11/12 mx-auto ">

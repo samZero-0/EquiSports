@@ -57,7 +57,7 @@ const ContactForm = () => {
         </div>
 
         {/* Right Side - Illustration */}
-        <div className="bg-white relative hidden md:block">
+        <div className="bg-white dark:bg-black relative hidden md:block">
         <DotLottieReact
           src="https://lottie.host/3e6fd66f-f097-4a56-a623-d65f28bf48c6/2WaBgklmgg.lottie"
           loop

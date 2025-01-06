@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect,useContext } from 'react';
+import { AuthContext } from "../providers/AuthProvider";
 import { FiCamera, FiTag, FiList, FiFileText, FiDollarSign, FiStar, FiSettings, FiClock, FiPackage, FiMail, FiUser } from 'react-icons/fi';
-
+import swal from 'sweetalert';
 const AddEquipment = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const {user} = useContext(AuthContext);
   const [formData, setFormData] = useState({
     image: '',
     itemName: '',
@@ -32,29 +34,58 @@ const AddEquipment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulating API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert('Equipment added successfully!');
-      setFormData({
-        image: '',
-        itemName: '',
-        categoryName: '',
-        description: '',
-        price: '',
-        rating: 3,
-        customization: '',
-        processingTime: '',
-        stockStatus: 50,
-        userEmail: 'user@example.com',
-        userName: 'John Doe'
+    const form =e.target;
+    const img = form.image.value;
+    const itemName = form.itemName.value;
+    const categoryName = form.categoryName.value;
+    const description = form.description.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const customization = form.customization.value;
+    const processingTime = form.processingTime.value;
+    const stockStatus = form.stockStatus.value;
+    const userEmail = form.userEmail.value;
+    const userName = form.userName.value;
+
+    const equipment = {img,itemName,categoryName,description,price,rating,customization,processingTime,stockStatus,userEmail,userName}
+
+  
+
+    fetch('https://assignment10backend.vercel.app/equipments', {
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json'
+        },
+        body: JSON.stringify(equipment)
+    })
+    .then(res => res.json())
+    .then(data =>{
+        setIsSubmitting(false); 
+        swal("Success!", "Equipment has been added successfully!", "success");
+        setFormData({
+            image: "",
+            itemName: "",
+            categoryName: "",
+            description: "",
+            price: "",
+            rating: "",
+            customization: "",
+            processingTime: "",
+            stockStatus: "",
+          });
+    })
+    .catch((error) => {
+        setIsSubmitting(false); // Reset loading state on error
+        swal("Error!", "Something went wrong. Please try again.", error);
       });
-    }, 2000);
+    
+
+    
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div className="min-h-screen bg-gray-50 dark:bg-transparent py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto bg-white  rounded-2xl shadow-xl overflow-hidden">
         <div className="px-4 py-8 sm:px-10">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-gray-900 animate-fade-in-down">Add New Equipment</h2>
@@ -220,7 +251,7 @@ const AddEquipment = () => {
                 type="email"
                 name="userEmail"
                 id="userEmail"
-                value={formData.userEmail}
+                value={user.email}
                 readOnly
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 sm:text-sm"
               />
@@ -235,7 +266,7 @@ const AddEquipment = () => {
                 type="text"
                 name="userName"
                 id="userName"
-                value={formData.userName}
+                value={user.displayName}
                 readOnly
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 sm:text-sm"
               />

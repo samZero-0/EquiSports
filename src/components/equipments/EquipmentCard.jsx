@@ -10,15 +10,15 @@ const EquipmentCard = ({ item }) => {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden"
+      className="bg-white dark:bg-transparent dark:border rounded-xl shadow-lg overflow-hidden"
     >
         <div className='h-64 w-full'>
             <img src={item.img} alt="" className='h-full w-full object-cover'/>
         </div>
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
-          <h3 className="text-xl font-bold text-gray-900">{item.itemName}</h3>
-          <span className="px-3 py-1 bg-orange-600 text-white rounded-full text-sm font-semibold">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.itemName}</h3>
+          <span className="px-3 py-1 bg-orange-600 text-white  rounded-full text-sm font-semibold">
             {item.categoryName}
           </span>
         </div>

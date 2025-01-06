@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 const Navbar = () => {
 
     const { user, logOut, loading } = useContext(AuthContext);
     const [hover, setHover] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const { isDarkMode, toggleDarkMode } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -75,8 +76,8 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li className="pr-4 text-base"><NavLink to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
                         <li className="text-base"><NavLink to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Equipments</NavLink></li>
-                        <li onClick={handleScroll2} className="text-base"><a>About Us</a></li>
-                        <li onClick={handleScroll} className="text-base"><a>Contact</a></li>
+                        <li onClick={handleScroll2} className="text-base dark:text-white"><a>About Us</a></li>
+                        <li onClick={handleScroll} className="text-base dark:text-white"><a>Contact</a></li>
                         {/* <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li> */}
                         {user && user.email? <li className="pl-4 text-base"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  ""}
                         
@@ -84,10 +85,18 @@ const Navbar = () => {
                 </div>
                 {loading ? (
                     <div className="md:flex justify-center items-center navbar-end hidden">
+                        <div className="md:mr-8 mr-3">
+              
+            </div>
                         <span className="loading loading-bars loading-lg"></span>
                     </div>
                 ) : (
                     <div className="space-x-5 md:flex items-center navbar-end">
+                        <DarkModeSwitch
+                checked={isDarkMode}
+                onChange={toggleDarkMode}
+                size={30}
+              />
                         {user && user.email && (
                             <div className="relative">
                                 <img

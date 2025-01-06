@@ -70,14 +70,14 @@ const MyEquipmentList = () => {
       <Helmet>
         <title>My Equipments</title>
       </Helmet>
-      <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">My Equipment</h1>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">My Equipment</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {loadedEquipments.length > 0 ? (
           loadedEquipments.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-white dark:bg-transparent rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               {/* Image Container */}
               <div className="relative h-48 overflow-hidden">
@@ -94,7 +94,7 @@ const MyEquipmentList = () => {
               {/* Content Container */}
               <div className="p-5">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{item.itemName}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">{item.itemName}</h3>
                 </div>
 
                 <div className="flex items-center mb-2">
@@ -108,7 +108,7 @@ const MyEquipmentList = () => {
                   </span>
                 </div>
 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">{item.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">{item.description}</p>
 
                 <div className="flex gap-2">
                   <Link

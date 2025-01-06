@@ -33,7 +33,7 @@ function Products() {
                 <div className="flex justify-center"><span className="loading loading-ring loading-lg text-4xl"></span></div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {equipments.map((product) => (
+                    {equipments.slice(0,8).map((product) => (
                         <div key={product._id} className="group relative">
                             <div className="relative">
                                 {product.price && (

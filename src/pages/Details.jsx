@@ -14,7 +14,7 @@ const Details = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-transparent py-12">
       <Helmet>
         <title>Details: {equipment.itemName}</title>
       </Helmet>
@@ -25,7 +25,7 @@ const Details = () => {
         transition={{ duration: 0.6 }}
         className="container mx-auto px-4 max-w-7xl"
       >
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white dark:bg-transparent dark:border rounded-2xl shadow-xl overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             {/* Image Section */}
             <motion.div
@@ -54,7 +54,7 @@ const Details = () => {
               <div className="space-y-6">
                 {/* Header */}
                 <div>
-                  <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                  <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
                     {equipment.itemName}
                   </h1>
                   <p className="text-lg text-gray-600">{equipment.category}</p>
@@ -84,39 +84,39 @@ const Details = () => {
 
                 {/* Description */}
                 <div className="prose prose-lg">
-                  <p className="text-gray-600">{equipment.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300">{equipment.description}</p>
                 </div>
 
                 {/* Details */}
                 <div className="space-y-4 border-t border-gray-200 pt-6">
                   <div className="flex justify-between">
-                   <div className="flex items-center gap-3"> <MdDashboardCustomize></MdDashboardCustomize>
-                   <span className="text-gray-600">Customization</span></div>
-                    <span className="font-medium">{equipment.customization}</span>
+                   <div className="flex items-center gap-3"> <MdDashboardCustomize className="dark:text-white"></MdDashboardCustomize>
+                   <span className="text-gray-600 dark:text-white">Customization</span></div>
+                    <span className="font-medium dark:text-white">{equipment.customization}</span>
                   </div>
                   <div className="flex justify-between">
-                    <div className="flex items-center gap-3"><IoIosTime></IoIosTime>
-                    <span className="text-gray-600">Processing Time</span></div>
-                    <span className="font-medium">{equipment.processingTime} days</span>
+                    <div className="flex items-center gap-3"><IoIosTime className="dark:text-white"></IoIosTime>
+                    <span className="text-gray-600 dark:text-white">Processing Time</span></div>
+                    <span className="font-medium dark:text-white">{equipment.processingTime} days</span>
                   </div>
                   <div className="flex justify-between">
-                  <div className="flex items-center gap-3"><MdStorage />
-                  <span className="text-gray-600">Stock Status</span></div>
-                    <span className="font-medium">{equipment.stockStatus} pieces available</span>
+                  <div className="flex items-center gap-3 "><MdStorage className="dark:text-white" />
+                  <span className="text-gray-600 dark:text-white">Stock Status</span></div>
+                    <span className="font-medium dark:text-white">{equipment.stockStatus} pieces available</span>
                   </div>
                 </div>
 
                 {/* Seller Info */}
                 <div className="border-t border-gray-200 pt-6 space-y-2">
                   <div className="flex items-center gap-3">
-                  <FaRegUserCircle></FaRegUserCircle>
-                  <p className="text-gray-600">
+                  <FaRegUserCircle className="dark:text-white"></FaRegUserCircle>
+                  <p className="text-gray-600 dark:text-white">
                     Added by: <span className="font-medium">{equipment.userName}</span>
                   </p>
                   </div>
                  <div className="flex items-center gap-3">
-                 <MdEmail />
-                  <p className="text-gray-600">
+                 <MdEmail className="dark:text-white" />
+                  <p className="text-gray-600 dark:text-white">
                     Contact: <span className="font-medium">{equipment.userEmail}</span>
                   </p>
                  </div>
