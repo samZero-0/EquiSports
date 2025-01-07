@@ -7,6 +7,7 @@ import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Login = () => {
   
@@ -58,14 +59,28 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center py-5">
+    <div className="flex flex-col justify-center items-center py-5 ">
       <ToastContainer />
       <Helmet>
         <title>Login</title>
       </Helmet>
 
-      <div className="mt-5">
-        <h1 className="text-2xl font-bold">Sign in</h1>
+    <div className="flex gap-3 w-full ">
+
+    <div className="w-1/2  flex justify-end">
+      <DotLottieReact
+          src="https://lottie.host/cc307039-288c-411a-ab70-057d1b6de0e0/RlNwCVRtET.lottie"
+          loop
+          autoplay
+          speed={1} 
+          style={{ width: "572px", height: "572px" }}
+        /> 
+      </div>
+
+      <div className="w-1/2">
+
+      <div className="py-5 flex ">
+        <h1 className="text-2xl font-bold dark:text-white">Sign in</h1>
       </div>
 
       <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-xl">
@@ -119,13 +134,17 @@ const Login = () => {
       </div>
 
       <div className="mt-10">
-        <span>
+        <span className="dark:text-white">
           Don't have an account?{" "}
           <Link to="/register" className="text-blue-700 underline">
             Register now
           </Link>
         </span>
       </div>
+      </div>
+
+    </div>
+     
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Register = () => {
   
@@ -70,72 +71,108 @@ const Register = () => {
   }
 
   return (
-    <div className="w-full flex justify-center items-center flex-col gap-4 py-12">
-      
-      <ToastContainer />
-      <Helmet>
-        <title>Register</title>
-      </Helmet>
-      <div>
-        <h1 className="text-2xl font-bold">Create an account</h1>
+    <div className="min-h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-800">
+    <div className="container mx-auto px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center gap-8">
+      {/* Lottie Animation */}
+      <div className="w-full lg:w-1/2 flex justify-center">
+        <DotLottieReact
+          src="https://lottie.host/cc307039-288c-411a-ab70-057d1b6de0e0/RlNwCVRtET.lottie"
+          loop
+          autoplay
+          speed={1}
+          style={{ width: "572px", height: "572px" }}
+        />
       </div>
-      <form className="w-full flex justify-center items-center flex-col gap-4 py-12" onSubmit={handleFormSubmit}>
-        <label className="input input-bordered flex items-center gap-2 md:w-1/4">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
-            <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-            <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-          </svg>
-          <input type="text" className="grow" placeholder="Email" name="email" required />
-        </label>
-        <label className="input input-bordered flex items-center gap-2 md:w-1/4">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
-          </svg>
-          <input type="text" className="grow" placeholder="Username" name="name" />
-        </label>
-
-        <label className="input input-bordered flex items-center gap-2 md:w-1/4">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
-          </svg>
-          <input type="url" className="grow" placeholder="Enter your Photo URL" name="photo" />
-        </label>
-
-        <label className="input input-bordered flex items-center gap-2 md:w-1/4 relative">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
-            <path fillRule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clipRule="evenodd" />
-          </svg>
-          <input
-            type={passwordVisible ? "text" : "password"}
-            placeholder="password"
-            className="input pr-10"
-            name="password"
-            required
-          />
+  
+      {/* Registration Form */}
+      <div className="w-full lg:w-1/2 bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
+        <h1 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Create an Account</h1>
+        <form className="space-y-6" onSubmit={handleFormSubmit}>
+          {/* Email Field */}
+          <div>
+            <label className="block text-gray-600 dark:text-gray-300 text-sm mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="input input-bordered w-full"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+  
+          {/* Username Field */}
+          <div>
+            <label className="block text-gray-600 dark:text-gray-300 text-sm mb-2">Username</label>
+            <input
+              type="text"
+              name="name"
+              className="input input-bordered w-full"
+              placeholder="Enter your username"
+            />
+          </div>
+  
+          {/* Photo URL Field */}
+          <div>
+            <label className="block text-gray-600 dark:text-gray-300 text-sm mb-2">Photo URL</label>
+            <input
+              type="url"
+              name="photo"
+              className="input input-bordered w-full"
+              placeholder="Enter your photo URL"
+            />
+          </div>
+  
+          {/* Password Field */}
+          <div>
+            <label className="block text-gray-600 dark:text-gray-300 text-sm mb-2">Password</label>
+            <div className="relative">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                name="password"
+                className="input input-bordered w-full pr-12"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+          </div>
+  
+          {/* Register Button */}
+          <button
+            type="submit"
+            className="btn btn-primary w-full py-3 font-semibold"
+          >
+            Register
+          </button>
+  
+          {/* Google Login Button */}
           <button
             type="button"
-            onClick={() => setPasswordVisible(!passwordVisible)}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xl"
+            onClick={handleGoogleLogin}
+            className="btn btn-outline w-full py-3 flex items-center justify-center gap-2 mt-2"
           >
-            {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+            <FaGoogle /> Login with Google
           </button>
-        </label>
-
-        <div className="form-control mt-6 w-1/4">
-          <button className="btn text-center text-lg font-bold btn-primary" type="submit">Register</button>
-        </div>
-
-        {error && <div className="text-xl font-bold text-red-500">{error}</div>}
-
-        <div className="form-control mt-6">
-          <Link ><button onClick={handleGoogleLogin} className="btn flex items-center text-lg "><FaGoogle /> Login with Google</button></Link>
-        </div>
-
-        <div>
-          <span>Already have an account? <Link to='/login' className="text-blue-700 underline">Log in</Link></span>
-        </div>
-      </form>
+  
+          {/* Login Redirect */}
+          <p className="text-center text-gray-600 dark:text-gray-400 text-sm mt-4">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-500 hover:underline">
+              Log in
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
+  </div>
+  
   );
 };
 
