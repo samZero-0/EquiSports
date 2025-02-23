@@ -13,7 +13,7 @@ const MainLayout = () => {
     return (
         <div className={isDarkMode ? "dark" : ""}>
             <ToastContainer></ToastContainer>
-       <div className="w-full dark:bg-black bg-white">
+       <div className="w-full dark:bg-[#080A0F] bg-white">
            <NavBar></NavBar>
 
         <div className="w-11/12 mx-auto ">

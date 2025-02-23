@@ -9,6 +9,7 @@ const Navbar = () => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const { isDarkMode, toggleDarkMode } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const handleLogOut = async () => {
         try {
             await logOut(); 
@@ -17,6 +18,7 @@ const Navbar = () => {
            const err =error;
         }
     };
+    
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
     };
@@ -36,7 +38,7 @@ const Navbar = () => {
       };
 
     return (
-        <div className=" text-black  z-50  sticky top-0 bg-white dark:bg-black ">
+        <div className=" text-black  z-50  sticky top-0 bg-white dark:bg-[#080A0F]">
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -76,8 +78,8 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li className="pr-4 text-base"><NavLink to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
                         <li className="text-base"><NavLink to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Equipments</NavLink></li>
-                        <li onClick={handleScroll2} className="text-base dark:text-white"><a>About Us</a></li>
-                        <li onClick={handleScroll} className="text-base dark:text-white"><a>Contact</a></li>
+                        {/* <li onClick={handleScroll2} className="text-base dark:text-white"><a>About Us</a></li>
+                        <li onClick={handleScroll} className="text-base dark:text-white"><a>Contact</a></li> */}
                         {/* <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li> */}
                         {user && user.email? <li className="pl-4 text-base"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  ""}
                         

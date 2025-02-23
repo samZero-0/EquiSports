@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div>
 
-<footer className="footer footer-center  text-base-content rounded p-10  dark:bg-black dark:text-white" >
+<footer className="footer footer-center  text-base-content rounded p-10  dark:bg-[#080A0F] dark:text-white" >
 <div><img src="/logo2.png" alt=""  className="w-32"/></div>
   <nav className="grid grid-flow-col gap-4">
     

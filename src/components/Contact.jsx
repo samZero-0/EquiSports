@@ -17,7 +17,7 @@ const ContactForm = () => {
     <div className=" flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 bg-white rounded-lg overflow-hidden shadow-xl">
         {/* Left Side - Form */}
-        <div className="bg-black p-8 md:p-12">
+        <div className="bg-black p-8 md:p-12 dark:bg-[#080A0F]">
           <h2 className="text-white text-2xl md:text-3xl font-bold mb-8">CONTACT US</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -57,7 +57,7 @@ const ContactForm = () => {
         </div>
 
         {/* Right Side - Illustration */}
-        <div className="bg-white dark:bg-black relative hidden md:block">
+        <div className="bg-white dark:bg-[#080A0F] relative hidden md:block">
         <DotLottieReact
           src="https://lottie.host/3e6fd66f-f097-4a56-a623-d65f28bf48c6/2WaBgklmgg.lottie"
           loop

@@ -28,7 +28,7 @@ const Home = () => {
 
   
 
-    <div className="dark:bg-black p-6 ">
+    <div className="dark:bg-[#080A0F] p-6 ">
             <ToastContainer />
             <Banner></Banner>
             <Products></Products>
