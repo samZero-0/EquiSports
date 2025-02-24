@@ -1,19 +1,29 @@
-
-import swal from 'sweetalert';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import swal from 'sweetalert';
+import { 
+  Image, 
+  ShoppingCart, 
+  Tag, 
+  FileText, 
+  DollarSign, 
+  Star, 
+  Paintbrush, 
+  Clock, 
+  Package, 
+  Mail, 
+  User,
+  Save
+} from 'lucide-react';
 
 const Update = () => {
-
   useEffect(() => {
-    // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);
-    
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const equipment = useLoaderData();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const equipment = useLoaderData();
   const [formData, setFormData] = useState({
     image: '',
     itemName: '',
@@ -24,7 +34,6 @@ const Update = () => {
     customization: '',
     processingTime: '',
     stockStatus: '',
-   
   });
 
   const handleChange = (e) => {
@@ -35,122 +44,216 @@ const Update = () => {
     }));
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const form =e.target;
-    const img = form.image.value;
-    const itemName = form.itemName.value;
-    const categoryName = form.categoryName.value;
-    const description = form.description.value;
-    const price = form.price.value;
-    const rating = form.rating.value;
-    const customization = form.customization.value;
-    const processingTime = form.processingTime.value;
-    const stockStatus = form.stockStatus.value;
-    const userEmail = form.userEmail.value;
-    const userName = form.userName.value;
-
-    const updatedEquipment = {img,itemName,categoryName,description,price,rating,customization,processingTime,stockStatus,userEmail,userName}
-
-  
+    const form = e.target;
+    const updatedEquipment = {
+      img: form.image.value,
+      itemName: form.itemName.value,
+      categoryName: form.categoryName.value,
+      description: form.description.value,
+      price: form.price.value,
+      rating: form.rating.value,
+      customization: form.customization.value,
+      processingTime: form.processingTime.value,
+      stockStatus: form.stockStatus.value,
+      userEmail: form.userEmail.value,
+      userName: form.userName.value
+    };
 
     fetch(`https://assignment10backend.vercel.app/equipments/${equipment._id}`, {
-        method: 'PUT',
-        headers: {
-            'content-type' : 'application/json'
-        },
-        body: JSON.stringify(updatedEquipment)
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedEquipment)
     })
-    .then(res => res.json())
-    .then(data =>{
-        setIsSubmitting(false); 
-        if(data.modifiedCount>0){
-            swal("Success!", "Equipment has been updated successfully!", "success");
-            
+      .then(res => res.json())
+      .then(data => {
+        setIsSubmitting(false);
+        if (data.modifiedCount > 0) {
+          swal("Success!", "Equipment has been updated successfully!", "success");
         }
-        
-        
-    })
-    .catch((error) => {
-        setIsSubmitting(false); 
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
         swal("Error!", "Something went wrong. Please try again.", error);
       });
-    
-
-    
   };
 
+  const InputField = ({ icon: Icon, label, name, type = "text", defaultValue, onChange, placeholder, readonly = false, min, max }) => (
+    <div className="flex flex-col space-y-2">
+      <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+        <Icon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+        {label}
+      </label>
+      {type === "textarea" ? (
+        <textarea
+          name={name}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          className="px-4 py-2 bg-white dark:bg-[#111318] border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full text-sm rounded-lg focus:outline-none text-gray-600 dark:text-gray-200 transition-all duration-200 min-h-[100px] placeholder-gray-400 dark:placeholder-gray-500"
+          placeholder={placeholder}
+          readOnly={readonly}
+        />
+      ) : (
+        <input
+          type={type}
+          name={name}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          className={`px-4 py-2 bg-white dark:bg-[#111318] border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full text-sm rounded-lg focus:outline-none text-gray-600 dark:text-gray-200 transition-all duration-200 ${readonly ? 'bg-gray-50 dark:bg-[#1A1D24]' : ''} placeholder-gray-400 dark:placeholder-gray-500`}
+          placeholder={placeholder}
+          readOnly={readonly}
+          min={min}
+          max={max}
+        />
+      )}
+    </div>
+  );
+
   return (
-    <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
-           <Helmet>
-        <title>Update</title>
+    <div className="min-h-screen bg-gray-50 dark:bg-[#080A0F] py-12">
+      <Helmet>
+        <title>Update Equipment</title>
       </Helmet>
-       
-      <div className="relative py-3 w-full mx-auto ">
-        <div className="relative px-4 py-10 bg-white mx-8 md:mx-0  rounded-3xl sm:p-10">
-          <div className="md:w-8/12 mx-auto ">
-            <div className="flex items-center space-x-5">
-              <div className="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</div>
-              <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
-                <h2 className="leading-relaxed">Update your Equipment</h2>
-                <p className="text-sm text-gray-500 font-normal leading-relaxed">Edit the details of the  equipment</p>
+
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="bg-white dark:bg-[#111318] rounded-2xl shadow-lg dark:shadow-xl overflow-hidden dark:border dark:border-gray-800">
+          <div className="p-8">
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex flex-shrink-0 justify-center items-center text-blue-500 dark:text-blue-400">
+                <ShoppingCart className="w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Update Equipment</h2>
+                <p className="text-gray-500 dark:text-gray-400">Edit the details of your equipment listing</p>
               </div>
             </div>
-            <form className="divide-y divide-gray-200" onSubmit={handleSubmit}>
-              <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <div className="flex flex-col">
-                  <label className="leading-loose">Image URL</label>
-                  <input type="text" name="image" defaultValue={equipment.img} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="http://example.com/image.jpg" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Item Name</label>
-                  <input type="text" name="itemName" defaultValue={equipment.itemName} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Cricket Bat" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Category Name</label>
-                  <input type="text" name="categoryName" defaultValue={equipment.category}  onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Sports Equipment" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Description</label>
-                  <textarea name="description" defaultValue={equipment.description}onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="High-quality cricket bat..."></textarea>
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Price</label>
-                  <input type="number" name="price" defaultValue={equipment.price} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="99.99" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Rating</label>
-                  <input type="number" name="rating" defaultValue={equipment.rating} onChange={handleChange} min="1" max="5" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="4.5" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Customization</label>
-                  <input type="text" name="customization" defaultValue={equipment.customization}onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Extra grip, hit paper" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Processing Time</label>
-                  <input type="text" name="processingTime" defaultValue={equipment.processingTime} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="3-5 business days" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Stock Status</label>
-                  <input type="number" name="stockStatus" defaultValue={equipment.stockStatus} onChange={handleChange} className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="100" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Email </label>
-                  <input type="email" name="userEmail" defaultValue={equipment.userEmail} readOnly className="px-4 py-2 border bg-gray-100 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose"> Name </label>
-                  <input type="text" name="userName" defaultValue={equipment.userName} readOnly className="px-4 py-2 border bg-gray-100 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" />
-                </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <InputField
+                  icon={Image}
+                  label="Image URL"
+                  name="image"
+                  defaultValue={equipment.img}
+                  onChange={handleChange}
+                  placeholder="http://example.com/image.jpg"
+                />
+                
+                <InputField
+                  icon={ShoppingCart}
+                  label="Item Name"
+                  name="itemName"
+                  defaultValue={equipment.itemName}
+                  onChange={handleChange}
+                  placeholder="Cricket Bat"
+                />
+
+                <InputField
+                  icon={Tag}
+                  label="Category Name"
+                  name="categoryName"
+                  defaultValue={equipment.category}
+                  onChange={handleChange}
+                  placeholder="Sports Equipment"
+                />
+
+                <InputField
+                  icon={DollarSign}
+                  label="Price"
+                  name="price"
+                  type="number"
+                  defaultValue={equipment.price}
+                  onChange={handleChange}
+                  placeholder="99.99"
+                />
+
+                <InputField
+                  icon={Star}
+                  label="Rating"
+                  name="rating"
+                  type="number"
+                  defaultValue={equipment.rating}
+                  onChange={handleChange}
+                  placeholder="4.5"
+                  min="1"
+                  max="5"
+                />
+
+                <InputField
+                  icon={Paintbrush}
+                  label="Customization"
+                  name="customization"
+                  defaultValue={equipment.customization}
+                  onChange={handleChange}
+                  placeholder="Extra grip, hit paper"
+                />
+
+                <InputField
+                  icon={Clock}
+                  label="Processing Time"
+                  name="processingTime"
+                  defaultValue={equipment.processingTime}
+                  onChange={handleChange}
+                  placeholder="3-5 business days"
+                />
+
+                <InputField
+                  icon={Package}
+                  label="Stock Status"
+                  name="stockStatus"
+                  type="number"
+                  defaultValue={equipment.stockStatus}
+                  onChange={handleChange}
+                  placeholder="100"
+                />
+
+                <InputField
+                  icon={Mail}
+                  label="Email"
+                  name="userEmail"
+                  type="email"
+                  defaultValue={equipment.userEmail}
+                  readonly={true}
+                />
+
+                <InputField
+                  icon={User}
+                  label="Name"
+                  name="userName"
+                  defaultValue={equipment.userName}
+                  readonly={true}
+                />
               </div>
-              <div className="pt-4 flex items-center space-x-4">
-                <button className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"> {isSubmitting ? (
-                    <span className="loading loading-spinner"></span>
+
+              <InputField
+                icon={FileText}
+                label="Description"
+                name="description"
+                type="textarea"
+                defaultValue={equipment.description}
+                onChange={handleChange}
+                placeholder="High-quality cricket bat..."
+              />
+
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  className="w-full bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center space-x-2 transition-colors duration-200"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   ) : (
-                    "Update"
-                  )}</button>
+                    <>
+                      <Save className="w-5 h-5" />
+                      <span>Update Equipment</span>
+                    </>
+                  )}
+                </button>
               </div>
             </form>
           </div>
