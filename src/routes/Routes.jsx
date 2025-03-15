@@ -14,6 +14,7 @@ import Details from "../pages/Details";
 import NotFound from "../pages/404Page";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import Update from "../pages/Update";
+import ShopPage from "../pages/Shop";
 // import HomeLayout from "../Layouts/HomeLayout";
 
   export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ import Update from "../pages/Update";
         {
           path: 'addEquipment',
           element:<PrivateRoute><AddEquipment></AddEquipment></PrivateRoute>
+        },
+        {
+          path: 'shop',
+          element:<ShopPage></ShopPage>
         },
         {
           path: 'allEquipments',
