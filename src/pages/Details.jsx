@@ -14,7 +14,8 @@ const Details = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-transparent py-12">
+    <div className="min-h-screen dark:bg-transparent py-12 w-screen max-w-none">
+
       <Helmet>
         <title>Details: {equipment.itemName}</title>
       </Helmet>
@@ -23,10 +24,10 @@ const Details = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="container mx-auto px-4 max-w-7xl"
+        className=" mx-auto px-4 max-w-7xl"
       >
-        <div className="bg-white dark:bg-transparent dark:border rounded-2xl shadow-xl overflow-hidden">
-          <div className="flex flex-col lg:flex-row">
+        <div className="bg-white dark:bg-transparent dark:border rounded-2xl shadow-xl overflow-hidden  ">
+          <div className="flex flex-col lg:flex-row ">
             {/* Image Section */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -34,13 +35,13 @@ const Details = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:w-1/2"
             >
-              <div className="relative h-[400px] lg:h-full">
+              <div className="relative h-[400px] lg:h-full ">
                 <img
                   src={equipment.img}
                   alt={equipment.itemName}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent " />
               </div>
             </motion.div>
 
