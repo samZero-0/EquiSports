@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function SportsCategory() {
     const categories = [
       {
@@ -39,7 +41,9 @@ function SportsCategory() {
           Discover our wide range of premium sports equipment for every athlete and fitness enthusiast
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Link to="/shop">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category) => (
             <div 
               key={category.title}
@@ -58,6 +62,7 @@ function SportsCategory() {
             </div>
           ))}
         </div>
+      </Link>
       </div>
     );
   }

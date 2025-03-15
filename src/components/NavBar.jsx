@@ -64,6 +64,10 @@ const Navbar = () => {
                                 <Link to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Equipments</Link>
                               
                             </li>
+                            <li>
+                                <Link to='/shop' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Shop</Link>
+                              
+                            </li>
                             <li><a>About Us</a></li>
                             {user && user.email? <li className="text-lg"><NavLink to={`/myEquipments/byEmail/${user.email}`} className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">My Equipments </NavLink></li>:  ""}
                         </ul>
@@ -78,6 +82,7 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li className="pr-4 text-base"><NavLink to='/' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Home</NavLink></li>
                         <li className="text-base"><NavLink to='/allEquipments' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Equipments</NavLink></li>
+                        <li className="text-base"><NavLink to='/shop' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300"> Shop</NavLink></li>
                         {/* <li onClick={handleScroll2} className="text-base dark:text-white"><a>About Us</a></li>
                         <li onClick={handleScroll} className="text-base dark:text-white"><a>Contact</a></li> */}
                         {/* <li className="pl-4 text-lg"><NavLink to='/addEquipment' className="dark:text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300">Add Equipment</NavLink></li> */}

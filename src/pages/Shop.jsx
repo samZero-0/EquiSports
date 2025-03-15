@@ -13,7 +13,10 @@ const ShopPage = () => {
     searchQuery: '',
     sortBy: 'newest' // 'newest', 'priceAsc', 'priceDesc', 'nameAsc'
   });
-  
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   // For mobile filter sidebar visibility
   const [showFilterSidebar, setShowFilterSidebar] = useState(false);
   
@@ -157,11 +160,11 @@ const ShopPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       {/* Header */}
       <header className="bg-white shadow-sm py-4">
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-800">Sports Equipment Shop</h1>
+         
           
           <div className="hidden md:flex items-center space-x-4">
             <div className="relative flex-1 max-w-xs">
