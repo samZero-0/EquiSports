@@ -8,6 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert';
 
 const Login = () => {
   
@@ -25,7 +27,9 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignin()
       .then(res => {
-        toast.success("Login successful",res);
+        // toast.success("Login successful",res);
+        swal("Successfully Logged in", "", "success");
+
         setTimeout(() => {
           navigate(location?.state ? location.state : "/");
         }, 1000);
@@ -47,7 +51,7 @@ const Login = () => {
     signIn(email, password)
       .then(res => {
         setUser(res.user);
-        toast.success("Login successful");
+        // toast.success("Login successful");
         setTimeout(() => {
           navigate(location?.state ? location.state : "/");
         }, 800);

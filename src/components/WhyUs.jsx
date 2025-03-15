@@ -25,13 +25,13 @@ export default function WhyUs() {
   ];
 
   const partners = [
-    { name: "Nike", logo: "https://loodibee.com/wp-content/uploads/Nike-Logo.png" },
-    { name: "Adidas", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1dtlrN5hP1x-m9AwA-NqGuUv2rwyehMoIkg&s" },
-    { name: "Puma", logo: "https://www.streetworld.com/_next/image?url=https%3A%2F%2Fmetastore-storyblok.imgix.net%2F750x750%2Fbe287f9f97%2Fpuma_logo.jpg%3Fauto%3Dformat%26px%3D0%26htn%3D0&w=3840&q=100" },
-    { name: "Under Armour", logo: "https://pbs.twimg.com/profile_images/1217104922434506753/x1LoA4bL_400x400.jpg" },
-    { name: "Reebok", logo: "https://placehold.co/200x80/fff/333?text=REEBOK" },
-    { name: "ASICS", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQCAEXLnpuYqi4NsGdExQ3eEDpz2TlfYIJiw&s" },
-    { name: "Wilson ", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmyTCqcNRx4lOw3swbt4EZj_4wKZNsPx-kIA&s" }
+    { name: "Nike", logo: "https://i.pinimg.com/736x/36/cc/5d/36cc5d3f7a3b41f07c6828d96764402c.jpg", logoD: "https://pngimg.com/d/nike_PNG4.png"},
+    { name: "Adidas", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1dtlrN5hP1x-m9AwA-NqGuUv2rwyehMoIkg&s", logoD: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsqJ7u_Z0ebImaPgD45qLgULx8l7OVvfV3JREn9RLNYX8bGvJBzbx1wQTS0pTttZXehfY&usqp=CAU" },
+    { name: "Puma", logo: "https://www.streetworld.com/_next/image?url=https%3A%2F%2Fmetastore-storyblok.imgix.net%2F750x750%2Fbe287f9f97%2Fpuma_logo.jpg%3Fauto%3Dformat%26px%3D0%26htn%3D0&w=3840&q=100",  logoD: "https://p.kindpng.com/picc/s/150-1506700_puma-logo-png-transparent-images-puma-logo-png.png"},
+    { name: "Under Armour", logo: "https://pbs.twimg.com/profile_images/1217104922434506753/x1LoA4bL_400x400.jpg",  logoD: "/underarmour.png"},
+    { name: "Reebok", logo: "https://placehold.co/200x80/fff/333?text=REEBOK",  logoD: "https://static.vecteezy.com/system/resources/previews/023/867/293/non_2x/reebok-logo-brand-clothes-with-name-white-symbol-design-icon-abstract-illustration-with-black-background-free-vector.jpg"},
+    { name: "ASICS", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQCAEXLnpuYqi4NsGdExQ3eEDpz2TlfYIJiw&s",  logoD: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7zfE5RgJDd7l2pQzHEi523zyI0I87xtdtJw&s"},
+    { name: "Wilson ", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmyTCqcNRx4lOw3swbt4EZj_4wKZNsPx-kIA&s", logoD: "https://cdn.freebiesupply.com/logos/large/2x/wilson-2-logo-black-and-white.png" }
   ];
 
   return (
@@ -80,12 +80,18 @@ export default function WhyUs() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center">
             {partners.map((partner, index) => (
               <div key={index} className="grayscale hover:grayscale-0 transition-all duration-300">
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="h-12 w-auto mx-auto object-contain"
-                />
-              </div>
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="h-12 w-12 mx-auto object-contain dark:hidden"
+              />
+              <img
+                src={partner.logoD}
+                alt={`${partner.name} Dark Mode`}
+                className="h-12 w-14 mx-auto object-contain hidden dark:block"
+              />
+            </div>
+            
             ))}
           </div>
         </div>
