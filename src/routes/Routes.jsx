@@ -15,6 +15,7 @@ import NotFound from "../pages/404Page";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import Update from "../pages/Update";
 import ShopPage from "../pages/Shop";
+import UserSettingsPage from "../pages/Settings";
 // import HomeLayout from "../Layouts/HomeLayout";
 
   export const router = createBrowserRouter([
@@ -42,6 +43,10 @@ import ShopPage from "../pages/Shop";
         {
           path: 'shop',
           element:<ShopPage></ShopPage>
+        },
+        {
+          path: 'settings',
+          element:<UserSettingsPage></UserSettingsPage>
         },
         {
           path: 'allEquipments',

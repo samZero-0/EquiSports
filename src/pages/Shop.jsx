@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Star, Filter, ShoppingCart, Search, ChevronDown, ChevronUp } from 'lucide-react';
 
 const ShopPage = () => {
