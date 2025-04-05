@@ -16,6 +16,7 @@ import MyEquipmentList from "../pages/MyEquipmentList";
 import Update from "../pages/Update";
 import ShopPage from "../pages/Shop";
 import UserSettingsPage from "../pages/Settings";
+import Chatbot from "../pages/Chatbot";
 // import HomeLayout from "../Layouts/HomeLayout";
 
   export const router = createBrowserRouter([
@@ -47,6 +48,10 @@ import UserSettingsPage from "../pages/Settings";
         {
           path: 'settings',
           element:<UserSettingsPage></UserSettingsPage>
+        },
+        {
+          path: 'chat',
+          element:<Chatbot></Chatbot>
         },
         {
           path: 'allEquipments',
